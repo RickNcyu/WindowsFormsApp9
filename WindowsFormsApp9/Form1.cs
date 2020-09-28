@@ -14,7 +14,7 @@ namespace WindowsFormsApp9
 {
     public partial class Form1 : Form
     {
-        static string connectionString = @"Server=10.85.84.102;Database=pos_data;User ID=sa;Password=123;";
+        static string connectionString = @"Server=localhost;Database=pos_data;User ID=sa;Password=123;";
         public Form1()
         {
             InitializeComponent();
