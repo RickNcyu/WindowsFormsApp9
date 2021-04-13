@@ -79,11 +79,11 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(686, 30);
+            this.button2.Location = new System.Drawing.Point(677, 48);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(111, 23);
             this.button2.TabIndex = 3;
-            this.button2.Text = "確認";
+            this.button2.Text = "集點檔產生";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -93,6 +93,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 25);
             this.textBox1.TabIndex = 4;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // comboBox2
             // 

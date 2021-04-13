@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -91,6 +92,22 @@ namespace WindowsFormsApp9
         }
 
         private void button2_Click(object sender, EventArgs e)
+        {
+            string path = @"D:/集點設定";
+            System.IO.Directory.CreateDirectory(path);
+
+            string outfileName = path + @"\集點.txt";
+            //FileStream fs2 = new FileStream(outfileName, FileMode.Create, FileAccess.Write);
+            string text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "\t" +"集點設定值"+ textBox1.Text;
+            using (StreamWriter sw = new StreamWriter(outfileName,true, Encoding.Default))
+            {
+                //Console.WriteLine(@textBox1);
+                sw.WriteLine(text);
+            }
+            
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
