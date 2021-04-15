@@ -17,15 +17,25 @@ namespace WindowsFormsApp9
     public partial class Form1 : Form
     {
         static string connectionString = @"Server=localhost;Database=postgres;User ID=postgres;Password=1234;";
+        
         public Form1()
         {
+            
             InitializeComponent();
         }
-
+        DataTable Table = new DataTable();
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Console.WriteLine(Table);
             string SQL = @"select * from car_data";
             dataGridView1.DataSource = GetAll(SQL);
+
+            if (Table != null) Table.Dispose();
+            Table.Columns.Add("付款方式", typeof(string));
+            Table.Columns.Add("集點設定值", typeof(string));
+            dataGridView2.DataSource = Table;
+            button4.PerformClick();
+            
         }
         static DataTable GetAll(string _SQLCommand)
         {
@@ -98,12 +108,21 @@ namespace WindowsFormsApp9
 
             string outfileName = path + @"\集點.txt";
             //FileStream fs2 = new FileStream(outfileName, FileMode.Create, FileAccess.Write);
-            string text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "\t" +"集點設定值"+ textBox1.Text;
-            using (StreamWriter sw = new StreamWriter(outfileName,true, Encoding.Default))
+            //string text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "\t" +"集點設定值"+ textBox1.Text;
+            using (StreamWriter sw = new StreamWriter(outfileName,false, Encoding.Default))
             {
+                if (!textBox3.Enabled) textBox3.Text = "";
+                if (!textBox4.Enabled) textBox4.Text = "";
+                if (!textBox5.Enabled) textBox5.Text = "";
                 //Console.WriteLine(@textBox1);
-                sw.WriteLine(text);
+                sw.WriteLine("現金"+ "=" +textBox6.Text);
+                sw.WriteLine("信用卡"+ "="+textBox7.Text);
+                sw.WriteLine("車隊"+ "="+textBox3.Text);
+                sw.WriteLine("簽帳"+ "="+textBox4.Text);
+                sw.WriteLine("捷利卡"+ "="+textBox5.Text);
             }
+            //呼叫執行查詢button4
+            button4.PerformClick();
             
         }
 
@@ -111,5 +130,90 @@ namespace WindowsFormsApp9
         {
 
         }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_Click(object sender, EventArgs e)
+        {
+
+            if (checkBox1.Checked == false) textBox3.Enabled = false;
+            else textBox3.Enabled = true;
+        }
+
+        private void checkBox2_Click(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked == false) textBox4.Enabled = false;
+            else textBox4.Enabled = true;
+        }
+
+        private void checkBox3_Click(object sender, EventArgs e)
+        {
+            if (checkBox3.Checked == false) textBox5.Enabled = false;
+            else textBox5.Enabled = true;
+        }
+
+        private void textBox6_Click(object sender, EventArgs e)
+        {
+
+        }
+        //只能輸入數字
+        private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            /*{
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                    e.Handled = true;
+            }*/
+        }
+        //查詢
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Table.Rows.Clear();
+            //if (Table != null) Console.WriteLine("yes");//Table.Dispose();
+            string[] line = File.ReadAllLines(@"D:/集點設定/集點.txt",Encoding.Default);
+            // line[0] 現金=7
+            // line[1] 信用卡=4
+            //Console.WriteLine(line[1]);
+            string[] value;
+            //用[]因為要split 會變成子字串
+            for(int i=0;i<line.Length;i++)
+            {   //i=0~4 
+                //line[0] line[1] 個別處理每行
+                value = line[i].ToString().Split('=');
+                //Console.WriteLine(value[0]);
+                //value[0]= 現金=7裡的現金
+                string[] row = new string[value.Length];
+                for(int j=0;j<value.Length;j++)
+                { row[j] = value[j].Trim(); }
+                Table.Rows.Add(row);
+            }
+            
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+     
+
+        
     }
 }
