@@ -17,7 +17,10 @@ namespace WindowsFormsApp9
     public partial class Form1 : Form
     {
         static string connectionString = @"Server=localhost;Database=postgres;User ID=postgres;Password=1234;";
+        string path = @"D:/集點設定";
         
+
+           
         public Form1()
         {
             
@@ -26,6 +29,10 @@ namespace WindowsFormsApp9
         DataTable Table = new DataTable();
         private void Form1_Load(object sender, EventArgs e)
         {
+            Directory.CreateDirectory(path);
+            //true不覆蓋內容
+            StreamWriter sw = new StreamWriter(path + @"\集點.txt", true, Encoding.Default);
+            sw.Close();
             //Console.WriteLine(Table);
             string SQL = @"select * from car_data";
             dataGridView1.DataSource = GetAll(SQL);
@@ -103,13 +110,12 @@ namespace WindowsFormsApp9
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string path = @"D:/集點設定";
-            System.IO.Directory.CreateDirectory(path);
+            
 
-            string outfileName = path + @"\集點.txt";
+
             //FileStream fs2 = new FileStream(outfileName, FileMode.Create, FileAccess.Write);
             //string text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "\t" +"集點設定值"+ textBox1.Text;
-            using (StreamWriter sw = new StreamWriter(outfileName,false, Encoding.Default))
+            using (StreamWriter sw = new StreamWriter(@"D:/集點設定/集點.txt", false, Encoding.Default))
             {
                 if (!textBox3.Enabled) textBox3.Text = "";
                 if (!textBox4.Enabled) textBox4.Text = "";
