@@ -133,7 +133,6 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(100, 25);
             this.textBox6.TabIndex = 24;
-            this.textBox6.Text = "0";
             this.textBox6.Click += new System.EventHandler(this.textBox6_Click);
             this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
@@ -331,6 +330,7 @@
             this.button1.TabIndex = 47;
             this.button1.Text = "確認傳送前台";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // Form1
             // 

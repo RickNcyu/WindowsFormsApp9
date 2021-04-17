@@ -61,13 +61,14 @@ namespace WindowsFormsApp9
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+
 
 
             //FileStream fs2 = new FileStream(outfileName, FileMode.Create, FileAccess.Write);
             //string text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "\t" +"集點設定值"+ textBox1.Text;
             using (StreamWriter sw = new StreamWriter(@"D:/集點設定/集點.txt", false, Encoding.Default))
             {
+
                 if (!textBox3.Enabled) textBox3.Text = "";
                 if (!textBox4.Enabled) textBox4.Text = "";
                 if (!textBox5.Enabled) textBox5.Text = "";
@@ -219,6 +220,13 @@ namespace WindowsFormsApp9
         private void textBox6_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            //如果有多加判斷
+            if ((textBox1.Text == "") || (textBox2.Text == "") || (textBox6.Text == "") || (textBox7.Text == "")) { MessageBox.Show("現金,信用卡不可空白"); }
+            else { }
         }
     }
 }
