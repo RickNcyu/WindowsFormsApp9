@@ -121,11 +121,11 @@ namespace WindowsFormsApp9
                 if (!textBox4.Enabled) textBox4.Text = "";
                 if (!textBox5.Enabled) textBox5.Text = "";
                 //Console.WriteLine(@textBox1);
-                sw.WriteLine("現金"+ "=" +textBox6.Text);
-                sw.WriteLine("信用卡"+ "="+textBox7.Text);
-                sw.WriteLine("車隊"+ "="+textBox3.Text);
-                sw.WriteLine("簽帳"+ "="+textBox4.Text);
-                sw.WriteLine("捷利卡"+ "="+textBox5.Text);
+                sw.WriteLine("901現金"+ "=" +textBox6.Text);
+                sw.WriteLine("931信用卡"+ "="+textBox7.Text);
+                sw.WriteLine("903簽帳"+ "="+textBox3.Text);
+                sw.WriteLine("905車隊捷利卡"+ "="+textBox4.Text);
+                sw.WriteLine("939CPCPay"+ "="+textBox5.Text);
             }
             //呼叫執行查詢button4
             button4.PerformClick();
@@ -172,8 +172,7 @@ namespace WindowsFormsApp9
 
         private void checkBox3_Click(object sender, EventArgs e)
         {
-            if (checkBox3.Checked == false) textBox5.Enabled = false;
-            else textBox5.Enabled = true;
+            
         }
 
         private void textBox6_Click(object sender, EventArgs e)
@@ -207,7 +206,9 @@ namespace WindowsFormsApp9
                 //value[0]= 現金=7裡的現金
                 string[] row = new string[value.Length];
                 for(int j=0;j<value.Length;j++)
-                { row[j] = value[j].Trim(); }
+                { row[j] = value[j].Trim();
+                    //Console.WriteLine(row[0]+row[1]); 
+                }
                 Table.Rows.Add(row);
             }
             
@@ -218,8 +219,20 @@ namespace WindowsFormsApp9
 
         }
 
-     
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
 
-        
+        }
+
+        private void checkBox3_CheckedChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox3_Click_1(object sender, EventArgs e)
+        {
+            if (checkBox3.Checked == false) textBox5.Enabled = false;
+            else textBox5.Enabled = true;
+        }
     }
 }
