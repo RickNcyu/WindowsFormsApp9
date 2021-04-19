@@ -56,6 +56,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox11 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,7 +73,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(375, 98);
+            this.textBox3.Location = new System.Drawing.Point(541, 98);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 25);
             this.textBox3.TabIndex = 12;
@@ -79,10 +81,11 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(541, 96);
+            this.textBox4.Location = new System.Drawing.Point(375, 98);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(100, 25);
             this.textBox4.TabIndex = 13;
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // textBox5
             // 
@@ -96,7 +99,7 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(375, 76);
+            this.checkBox1.Location = new System.Drawing.Point(541, 76);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(108, 19);
             this.checkBox1.TabIndex = 21;
@@ -109,7 +112,7 @@
             this.checkBox2.AutoSize = true;
             this.checkBox2.Checked = true;
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(541, 76);
+            this.checkBox2.Location = new System.Drawing.Point(375, 78);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(59, 19);
             this.checkBox2.TabIndex = 22;
@@ -176,6 +179,7 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
             this.radioButton1.Location = new System.Drawing.Point(850, 17);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(109, 19);
@@ -191,7 +195,6 @@
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(84, 19);
             this.radioButton2.TabIndex = 33;
-            this.radioButton2.TabStop = true;
             this.radioButton2.Text = "公升/1點";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
@@ -259,7 +262,7 @@
             this.checkBox5.AutoSize = true;
             this.checkBox5.Checked = true;
             this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox5.Location = new System.Drawing.Point(541, 276);
+            this.checkBox5.Location = new System.Drawing.Point(375, 275);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(59, 19);
             this.checkBox5.TabIndex = 39;
@@ -272,7 +275,7 @@
             this.checkBox6.AutoSize = true;
             this.checkBox6.Checked = true;
             this.checkBox6.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox6.Location = new System.Drawing.Point(375, 276);
+            this.checkBox6.Location = new System.Drawing.Point(541, 274);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(108, 19);
             this.checkBox6.TabIndex = 38;
@@ -289,14 +292,14 @@
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(541, 296);
+            this.textBox9.Location = new System.Drawing.Point(375, 295);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(100, 25);
             this.textBox9.TabIndex = 36;
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(375, 298);
+            this.textBox10.Location = new System.Drawing.Point(541, 296);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(100, 25);
             this.textBox10.TabIndex = 35;
@@ -307,7 +310,7 @@
             this.label3.Font = new System.Drawing.Font("微軟正黑體", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label3.Location = new System.Drawing.Point(63, 20);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(87, 43);
+            this.label3.Size = new System.Drawing.Size(84, 42);
             this.label3.TabIndex = 45;
             this.label3.Text = "汽油";
             // 
@@ -317,7 +320,7 @@
             this.label4.Font = new System.Drawing.Font("微軟正黑體", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label4.Location = new System.Drawing.Point(63, 205);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 43);
+            this.label4.Size = new System.Drawing.Size(84, 42);
             this.label4.TabIndex = 46;
             this.label4.Text = "柴油";
             // 
@@ -332,11 +335,29 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(209, 9);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(37, 15);
+            this.label7.TabIndex = 49;
+            this.label7.Text = "站名";
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(255, 6);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(100, 25);
+            this.textBox11.TabIndex = 48;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1204, 497);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.textBox11);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -403,6 +424,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox11;
     }
 }
 

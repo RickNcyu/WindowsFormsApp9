@@ -31,8 +31,17 @@ namespace WindowsFormsApp9
         {
             Directory.CreateDirectory(path);
             //true不覆蓋內容
+
             StreamWriter sw = new StreamWriter(path + @"\集點.txt", true, Encoding.Default);
             sw.Close();
+            /*
+              if(File.Exists(path + @"\集點.txt")) { }
+            else
+            {
+                File.Create(path + @"\集點.txt");
+                
+            }
+            */
             //Console.WriteLine(Table);
 
             if (Table != null) Table.Dispose();
@@ -63,12 +72,13 @@ namespace WindowsFormsApp9
         {
 
 
-
+            string temp="";
             //FileStream fs2 = new FileStream(outfileName, FileMode.Create, FileAccess.Write);
             //string text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "\t" +"集點設定值"+ textBox1.Text;
             using (StreamWriter sw = new StreamWriter(@"D:/集點設定/集點.txt", false, Encoding.Default))
             {
-
+                if (radioButton1.Checked) { temp = "以現金集點"; }
+                else if (radioButton2.Checked) { temp = "以公升集點"; }
                 if (!textBox3.Enabled) textBox3.Text = "";
                 if (!textBox4.Enabled) textBox4.Text = "";
                 if (!textBox5.Enabled) textBox5.Text = "";
@@ -76,20 +86,22 @@ namespace WindowsFormsApp9
                 if (!textBox9.Enabled) textBox9.Text = "";
                 if (!textBox8.Enabled) textBox8.Text = "";
                 //Console.WriteLine(@textBox1);
+                sw.WriteLine(temp+"\n");
                 sw.WriteLine("汽油");
                 sw.WriteLine("901現金"+ "=" +textBox6.Text);
                 sw.WriteLine("931信用卡"+ "="+textBox7.Text);
-                sw.WriteLine("903簽帳"+ "="+textBox3.Text);
-                sw.WriteLine("905車隊捷利卡"+ "="+textBox4.Text);
+                sw.WriteLine("903簽帳"+ "="+textBox4.Text);
+                sw.WriteLine("905車隊捷利卡"+ "="+textBox3.Text);
                 sw.WriteLine("939CPCPay"+ "="+textBox5.Text);
 
                 
                 sw.WriteLine("\n柴油");
                 sw.WriteLine("901現金" + "=" + textBox2.Text);
                 sw.WriteLine("931信用卡" + "=" + textBox1.Text);
-                sw.WriteLine("903簽帳" + "=" + textBox10.Text);
-                sw.WriteLine("905車隊捷利卡" + "=" + textBox9.Text);
+                sw.WriteLine("903簽帳" + "=" + textBox9.Text);
+                sw.WriteLine("905車隊捷利卡" + "=" + textBox10.Text);
                 sw.WriteLine("939CPCPay" + "=" + textBox8.Text);
+                sw.WriteLine("站名" + "=" + textBox11.Text);
             }
             //呼叫執行查詢button4
             button4.PerformClick();
@@ -174,6 +186,12 @@ namespace WindowsFormsApp9
                     //Console.WriteLine(row[0]+row[1]); 
                 }
                 Table.Rows.Add(row);
+                
+                //若是最後一行判斷 假如設定檔裡有站名就顯示
+                if(i==line.Length-1)
+                {
+                    textBox11.Text = row[1];
+                }
             }
             
         }
@@ -227,6 +245,11 @@ namespace WindowsFormsApp9
             //如果有多加判斷
             if ((textBox1.Text == "") || (textBox2.Text == "") || (textBox6.Text == "") || (textBox7.Text == "")) { MessageBox.Show("現金,信用卡不可空白"); }
             else { }
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
