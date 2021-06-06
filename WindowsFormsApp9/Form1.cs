@@ -17,7 +17,7 @@ namespace WindowsFormsApp9
     public partial class Form1 : Form
     {
         static string connectionString = @"Server=localhost;Database=postgres;User ID=postgres;Password=1234;";
-        string path = @"D:\集點設定";
+        string path = @"C:\down";
         
 
            
@@ -32,7 +32,7 @@ namespace WindowsFormsApp9
             Directory.CreateDirectory(path);
             //true不覆蓋內容
 
-            StreamWriter sw = new StreamWriter(path + @"\集點.txt", true, Encoding.Default);
+            StreamWriter sw = new StreamWriter(path + @"\down.txt", true, Encoding.Default);
             sw.Close();
             /*
               if(File.Exists(path + @"\集點.txt")) { }
@@ -75,7 +75,7 @@ namespace WindowsFormsApp9
             string temp="";
             //FileStream fs2 = new FileStream(outfileName, FileMode.Create, FileAccess.Write);
             //string text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "\t" +"集點設定值"+ textBox1.Text;
-            using (StreamWriter sw = new StreamWriter(@"D:/集點設定/集點.txt", false, Encoding.Default))
+            using (StreamWriter sw = new StreamWriter(@"C:/down/down.txt", false, Encoding.Default))
             {
                 if (radioButton1.Checked) { temp = "以現金集點"; }
                 else if (radioButton2.Checked) { temp = "以公升集點"; }
@@ -86,7 +86,8 @@ namespace WindowsFormsApp9
                 if (!textBox9.Enabled) textBox9.Text = "";
                 if (!textBox8.Enabled) textBox8.Text = "";
                 //Console.WriteLine(@textBox1);
-                sw.WriteLine(temp+"\n");
+                sw.WriteLine(temp);
+                sw.WriteLine("站IP" + "=" + textBox12.Text);
                 sw.WriteLine("汽油");
                 sw.WriteLine("901現金"+ "=" +textBox6.Text);
                 sw.WriteLine("931信用卡"+ "="+textBox7.Text);
@@ -102,6 +103,7 @@ namespace WindowsFormsApp9
                 sw.WriteLine("905車隊捷利卡" + "=" + textBox10.Text);
                 sw.WriteLine("939CPCPay" + "=" + textBox8.Text);
                 sw.WriteLine("站名" + "=" + textBox11.Text);
+                
             }
             //呼叫執行查詢button4
             button4.PerformClick();
@@ -168,9 +170,10 @@ namespace WindowsFormsApp9
         {
             Table.Rows.Clear();
             //if (Table != null) Console.WriteLine("yes");//Table.Dispose();
-            string[] line = File.ReadAllLines(@"D:/集點設定/集點.txt",Encoding.Default);
+            string[] line = File.ReadAllLines(@"C:/down/down.txt",Encoding.Default);
             // line[0] 現金=7
             // line[1] 信用卡=4
+            
             //Console.WriteLine(line[1]);
             string[] value;
             //用[]因為要split 會變成子字串
@@ -187,10 +190,16 @@ namespace WindowsFormsApp9
                 }
                 Table.Rows.Add(row);
                 
-                //若是最後一行判斷 假如設定檔裡有站名就顯示
-                if(i==line.Length-1)
+                //判斷 假如設定檔裡有站名就顯示
+                if(i==15)
                 {
+                    
                     textBox11.Text = row[1];
+                }
+                if (i == 1)
+                {
+
+                    textBox12.Text = row[1];
                 }
             }
             
@@ -242,12 +251,38 @@ namespace WindowsFormsApp9
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            //如果有多加判斷
-            if ((textBox1.Text == "") || (textBox2.Text == "") || (textBox6.Text == "") || (textBox7.Text == "")) { MessageBox.Show("現金,信用卡不可空白"); }
-            else { }
+            //Console.WriteLine(textBox12.Text);
+            
+            File.Copy(@"C:\down\down.txt", @"C:\down\1.txt",true);
+            using (StreamWriter sw = new StreamWriter(@"C:\down\1.txt", true, Encoding.Default))
+            {
+                sw.WriteLine(textBox12.Text + ".10");
+            }
+
+            File.Copy(@"C:\down\down.txt", @"C:\down\2.txt",true);
+            using (StreamWriter sw = new StreamWriter(@"C:\down\2.txt", true, Encoding.Default))
+            {
+                sw.WriteLine(textBox12.Text + ".20");
+            }
+            File.Copy(@"C:\down\down.txt", @"C:\down\3.txt",true);
+            using (StreamWriter sw = new StreamWriter(@"C:\down\3.txt", true, Encoding.Default))
+            {
+                sw.WriteLine(textBox12.Text + ".30");
+            }
+            
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox12_TextChanged(object sender, EventArgs e)
         {
 
         }
