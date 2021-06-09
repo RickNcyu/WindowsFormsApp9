@@ -253,22 +253,27 @@ namespace WindowsFormsApp9
         {
             //Console.WriteLine(textBox12.Text);
             
-            File.Copy(@"C:\down\down.txt", @"C:\down\1.txt",true);
-            using (StreamWriter sw = new StreamWriter(@"C:\down\1.txt", true, Encoding.Default))
-            {
-                sw.WriteLine(textBox12.Text + ".10");
-            }
+                File.Copy(@"C:\down\down.txt", @"C:\down\1.txt", true);
+                using (StreamWriter sw = new StreamWriter(@"C:\down\1.txt", true, Encoding.Default))
+                {
+                    sw.WriteLine(textBox12.Text + ".10");
+                }
 
-            File.Copy(@"C:\down\down.txt", @"C:\down\2.txt",true);
-            using (StreamWriter sw = new StreamWriter(@"C:\down\2.txt", true, Encoding.Default))
-            {
-                sw.WriteLine(textBox12.Text + ".20");
-            }
-            File.Copy(@"C:\down\down.txt", @"C:\down\3.txt",true);
-            using (StreamWriter sw = new StreamWriter(@"C:\down\3.txt", true, Encoding.Default))
-            {
-                sw.WriteLine(textBox12.Text + ".30");
-            }
+                File.Copy(@"C:\down\down.txt", @"C:\down\2.txt", true);
+                using (StreamWriter sw = new StreamWriter(@"C:\down\2.txt", true, Encoding.Default))
+                {
+                    sw.WriteLine(textBox12.Text + ".20");
+                }
+                File.Copy(@"C:\down\2.txt", @"\\10.85.138.202\down\down.txt", true);
+                
+                /*
+                File.Copy(@"C:\down\down.txt", @"C:\down\3.txt", true);
+                using (StreamWriter sw = new StreamWriter(@"C:\down\3.txt", true, Encoding.Default))
+                {
+                    sw.WriteLine(textBox12.Text + ".30");
+                }
+                */  
+            
             
         }
 
